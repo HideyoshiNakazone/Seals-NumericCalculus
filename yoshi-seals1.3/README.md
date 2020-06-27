@@ -22,7 +22,7 @@ This python package is made for applied Numeric Calculus of Linear Algebra. It i
 
 The module *scan* has a function for *Numpy* arrays and *Pandas* dataframes, and used the following syntax `Seals.scan.np(path)` for *Numpy* and `Seals.scan.pd(path)` for *Pandas*, where `path` is the path to your directory.
 
-The module *write* has a function for *Numpy* arrays and *Pandas* dataframes, and uses the following syntax `Sealswrite.np(array,path)` for *Numpy*, where `array` is the matrix that you desire to output and `path` is the path to your directory, and `Seals.write.pd(df,path)` for *Pandas*, where `df` is the matrix that you desire to output and `path` is the path to your directory.
+The module *write* has a function for *Numpy* arrays and *Pandas* dataframes, and uses the following syntax `Seals.write.np(array,path)` for *Numpy*, where `array` is the matrix that you desire to output and `path` is the path to your directory, and `Seals.write.pd(df,path)` for *Pandas*, where `df` is the matrix that you desire to output and `path` is the path to your directory.
 
 The module *insert* has a function for *matrix* and another for *vector*, and it has the following syntax `Seals.insert.function(array)`, where `insert` is the *Python Module* and `function` is either a `matrix` or a `vector` and `array` is either a *matrix* or a *vector*.
 

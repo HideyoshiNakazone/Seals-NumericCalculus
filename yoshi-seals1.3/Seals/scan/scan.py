@@ -20,14 +20,26 @@
 import numpy as np
 import pandas as pd
 
-def numpy(self, path):
+def numpy(path, sep=None, decimal=None):
 
-    df=pd.read_csv(path, sep=';',decimal=",",header=None)
+    if sep is None:
+        sep = ","
+
+    if decimal is None:
+        decimal = "."
+
+    df=pd.read_csv(path, sep=sep, decimal=decimal, header=None)
     array = df.to_numpy()
 
     return array
 
-def pandas(self, path):
+def pandas(path, sep=None, decimal=None):
 
-    return pd.read_csv(path, sep=';',decimal=",")
+    if sep is None:
+        sep = ","
+
+    if decimal is None:
+        decimal = "."
+
+    return pd.read_csv(path, sep=sep, decimal=decimal)
 

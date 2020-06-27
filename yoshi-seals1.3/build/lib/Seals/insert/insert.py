@@ -19,7 +19,6 @@
 
 def matrix(matrix):
 
-
     i = 0
     
     while (i < matrix.shape[0]):
