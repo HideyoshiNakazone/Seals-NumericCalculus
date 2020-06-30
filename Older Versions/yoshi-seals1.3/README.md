@@ -1,6 +1,6 @@
 # Seals - Numeric Calculus
 
-This python namespace is made for applied Numeric Calculus of Linear Algebra. It is made with the following objectives in mind:
+This python package is made for applied Numeric Calculus of Linear Algebra. It is made with the following objectives in mind:
 
 * Scan *csv* files to make a numpy matrix.
 
@@ -20,17 +20,17 @@ This python namespace is made for applied Numeric Calculus of Linear Algebra. It
 
 ## Syntax
 
-To call the package *scan* use the syntax: `from Seals import scan`. The package also has a function for *Numpy* arrays and *Pandas* dataframes, and used the following syntax `scan.np(path)` for *Numpy* and `scan.pd(path)` for *Pandas*, where `path` is the path to your directory.
+The module *scan* has a function for *Numpy* arrays and *Pandas* dataframes, and used the following syntax `Seals.scan.np(path)` for *Numpy* and `Seals.scan.pd(path)` for *Pandas*, where `path` is the path to your directory.
 
-To call the package *write* use the syntax: `from Seals import write`. The package also has a function for *Numpy* arrays and *Pandas* dataframes, and uses the following syntax `write.np(array,path)` for *Numpy*, where `array` is the matrix that you desire to output and `path` is the path to your directory, and `write.pd(df,path)` for *Pandas*, where `df` is the matrix that you desire to output and `path` is the path to your directory.
+The module *write* has a function for *Numpy* arrays and *Pandas* dataframes, and uses the following syntax `Seals.write.np(array,path)` for *Numpy*, where `array` is the matrix that you desire to output and `path` is the path to your directory, and `Seals.write.pd(df,path)` for *Pandas*, where `df` is the matrix that you desire to output and `path` is the path to your directory.
 
-To call the package *insert* use the syntax: `from Seals import insert`. The package also has a function for *matrix* and another for *vector*, and it has the following syntax `insert.function(array)`, where `insert` is the *Python Module* and `function` is either a `matrix` or a `vector` and `array` is either a *matrix* or a *vector*.
+The module *insert* has a function for *matrix* and another for *vector*, and it has the following syntax `Seals.insert.function(array)`, where `insert` is the *Python Module* and `function` is either a `matrix` or a `vector` and `array` is either a *matrix* or a *vector*.
 
 There is also a function that given a matrix it return all real eigen values
 
 ### Processes
 
-To call the module `process` use the syntax: `from Seals import process as sl`, where `sl` is an instance and to use a function you have to append the desired function in front of the instance like: `sl.identity(array)`.
+To call the module `process` use the syntax: `sl = Seals.process`, where `sl` is an instance and to use a function you have to append the desired function in front of the instance like: `sl.identity(array)`.
 
 * The function *identity* returns a *numpy* identity matrix of the order of the matrix passed into to it, and it has the following syntax `sl.identity(array)`, which `array` is a square matrix.
 
