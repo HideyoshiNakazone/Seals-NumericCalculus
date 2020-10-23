@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="yoshi-seals",
-    version="1.3",
+    version="1.3.2",
     author="Vitor Hideyoshi",
     author_email="vitor.h.n.batista@gmail.com",
     description="Numeric Calculus python module in the topic of Linear Algebra",

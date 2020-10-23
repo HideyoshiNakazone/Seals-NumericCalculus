@@ -24,9 +24,11 @@ def eigen(a):
     k = 0
     l = np.ones((a.shape[0]))
 
-    while (k < a.shape[0]):
+    at = a #variavel temporaria para A
 
-        u = np.random.rand(a.shape[0],1)
+    while (k < at.shape[0]):
+
+        u = np.random.rand(at.shape[0],1)
         u = u/max(u.min(), u.max(), key=abs)
 
         ctrl = 0
@@ -34,7 +36,7 @@ def eigen(a):
         while (ctrl != l[k]):
             
             ctrl = l[k]
-            u = a.dot(u)
+            u = at.dot(u)
             l[k] = max(u.min(), u.max(), key=abs)
             u = u/l[k]
 
@@ -44,8 +46,26 @@ def eigen(a):
         while (u[i] == 0):
             i += 1
 
-        a = a - (1/u[i])*u*a[i]
-
+        at = at - (1/u[i])*u*at[i]
         k += 1
 
-    return l
+    i = 0
+    b = np.random.rand(a.shape[0],a.shape[1])
+
+    while (i < l.shape[0]):
+
+        alpha = 0.999*l[i]
+
+        t = np.random.rand(a.shape[0],1)
+
+        b[i] = b[i]/max(b[i].min(), b[i].max(), key=abs)
+        t = l/max(l.min(), l.max(), key=abs)
+
+        while not (np.allclose(b[i],t,atol=10**(-17))):
+            t = b[i].copy()
+            b[i] = np.linalg.solve((a - alpha*np.identity(a.shape[0])),((l[i]-alpha)*t))
+            b[i] = b[i]/max(b[i].min(), b[i].max(), key=abs)
+        
+        i += 1
+
+    return l, b
