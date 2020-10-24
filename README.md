@@ -18,6 +18,8 @@ This python namespace is made for applied Numeric Calculus of Linear Algebra. It
   * LU Decomposition
   * Cramer
 
+* Calculate eigenvalues and its' corresponding eigenvector (by the methods of Power Method for the eigenvalues, and Shifted Inverse Power Method for the eigenvector)
+
 ## Syntax
 
 To call the package *scan* use the syntax: `from Seals import scan`. The package also has a function for *Numpy* arrays and *Pandas* dataframes, and used the following syntax `scan.np(path)` for *Numpy* and `scan.pd(path)` for *Pandas*, where `path` is the path to your directory.
