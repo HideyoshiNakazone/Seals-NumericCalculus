@@ -4,11 +4,11 @@ This python namespace is made for applied Numeric Calculus of Linear Algebra. It
 
 * Scan *csv* files to make a numpy matrix.
 
-* Write a matrix into a *csv* file
+* Write a matrix into a *csv* file.
 
 * Insert user input into a matrix or a vector.
 
-* Calculate Eigenvalues and his Eigenvector
+* Calculate Eigenvalues and his Eigenvectors.
 
 * Use methods to proccess the matrices.
   * Identity Matrix
