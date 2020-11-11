@@ -8,7 +8,7 @@ This python namespace is made for applied Numeric Calculus of Linear Algebra. It
 
 * Insert user input into a matrix or a vector.
 
-* Calculate Eigen Values
+* Calculate Eigenvalues and his Eigenvector
 
 * Use methods to proccess the matrices.
   * Identity Matrix
@@ -26,7 +26,7 @@ To call the package *write* use the syntax: `from Seals import write`. The packa
 
 To call the package *insert* use the syntax: `from Seals import insert`. The package also has a function for *matrix* and another for *vector*, and it has the following syntax `insert.function(array)`, where `insert` is the *Python Module* and `function` is either a `matrix` or a `vector` and `array` is either a *matrix* or a *vector*.
 
-There is also a function that given a matrix it return all real eigen values
+There is also a function that given a matrix it return all real eigenvalues and all real eigenvectors, this function uses the power method to find the eigenvalues and inverse power method for the eigenvector.
 
 ### Processes
 
