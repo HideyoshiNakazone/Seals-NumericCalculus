@@ -18,16 +18,34 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import csv
+import numpy as np
+import pandas as pd
 
-def numpy(array, path):
+class numpy:
 
-    with open(path, mode='w') as sistema_linear:
+    def __init__(self):
+        pass
+    def csv(self, array, path):
 
-        solution_writer = csv.writer(sistema_linear, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        solution_writer.writerows(array)
-        
-    return array
+        with open(path, mode='w') as sistema_linear:
 
-def pandas(df, path):
-    
-    df.to_csv(path)
+            solution_writer = csv.writer(sistema_linear, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            solution_writer.writerows(array)
+
+    def txt(self, array, path):
+
+        np.savetxt(path, array, fmt='%8f', delimiter=' ', \
+            newline='\n', header='', footer='', comments='# ', encoding=None)
+
+class pandas:
+
+    def __init__(self):
+        pass
+    def csv(self, df, path):
+
+        df.to_csv(path)
+
+    def txt(self, df, path):
+
+        np.savetxt(path, df.values, fmt='%8f', delimiter=' ', \
+            newline='\n', header='', footer='', comments='# ', encoding=None)
