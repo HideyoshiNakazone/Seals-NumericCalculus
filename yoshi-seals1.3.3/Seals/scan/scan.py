@@ -20,18 +20,12 @@
 import numpy as np
 import pandas as pd
 
-def numpy(path, sep=None, decimal=None):
+def numpy(path, sep=None):
 
     if sep is None:
         sep = ","
 
-    if decimal is None:
-        decimal = "."
-
-    df=pd.read_csv(path, sep=sep, decimal=decimal, header=None)
-    array = df.to_numpy()
-
-    return array
+    return np.genfromtxt(path, delimiter=sep)
 
 def pandas(path, sep=None, decimal=None):
 
