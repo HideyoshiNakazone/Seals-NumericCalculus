@@ -44,48 +44,42 @@ def identity(matrix):
         
     return matrix
 
-def gauss(matrix):
+def gauss(a):
     
-    i = 0
-    k = 0
-    
-    while (i < matrix.shape[0]):
-        
-        if (matrix[i][i] == 0):
+    for i in range(a.shape[0]):
+
+        k = i + 1
+
+        while (k<a.shape[0]):
+
+            l = 1
+            while (a[i][i] == 0 and l < a.shape[0]):
+
+                temp = a[i].copy()
+                a[i] = a[i+l]
+                a[i+l] = temp
+
+                l += 1
             
-            n = i
-            
-            while (matrix[i][i] == 0) and (n < matrix.shape[0]):
-                
-                temp = matrix[i].copy()
-                matrix[i] = matrix[n]
-                matrix[n] = temp
-                
-                n += 1
-        
-        while (k < matrix.shape[0]):
-            
-            if (k == i) or (matrix[i][i] == 0):
-                
+            while (a[k][i] == 0 and (k+1) < a.shape[0]):
                 k += 1
-                
-            else:
-                
-                mult = matrix[k][i]/matrix[i][i]
-                matrix[k] = matrix[k] - mult*matrix[i]
-                k += 1
+
+            a[k] = a[k] - (a[k][i]/a[i][i])*a[i]
             
+            k += 1
+
         i += 1
-        k = 0
-    
-    i = 0
-    
-    while ((i) < matrix.shape[0]) and (matrix[i][i] != 0):
+
+    x = np.zeros(a.shape[0])
+
+    for j in reversed(range(x.shape[0])):
         
-        matrix[i] = matrix[i]/matrix[i][i]
-        i += 1        
+        suma = 0
+        for k in range (j,a.shape[0]):
+            suma += a[j][k]*x[k]
+        x[j] = (a[j][a.shape[0]] - suma)/a[j][j]
     
-    return matrix[:,(matrix.shape[0]):]
+    return x
 
 def inverse(matrix):
     
