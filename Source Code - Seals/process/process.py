@@ -83,7 +83,47 @@ def gauss(a):
 
 def inverse(matrix):
     
-    return gauss(np.hstack((matrix, identity(np.zeros(matrix.shape)))))
+    matrix = np.hstack(matrix,np.identity(matrix.shape[0]))
+    i = 0
+    k = 0
+    
+    while (i < matrix.shape[0]):
+        
+        if (matrix[i][i] == 0):
+            
+            n = i
+            
+            while (matrix[i][i] == 0) and (n < matrix.shape[0]):
+                
+                temp = matrix[i].copy()
+                matrix[i] = matrix[n]
+                matrix[n] = temp
+                
+                n += 1
+        
+        while (k < matrix.shape[0]):
+            
+            if (k == i) or (matrix[i][i] == 0):
+                
+                k += 1
+                
+            else:
+                
+                mult = matrix[k][i]/matrix[i][i]
+                matrix[k] = matrix[k] - mult*matrix[i]
+                k += 1
+            
+        i += 1
+        k = 0
+    
+    i = 0
+    
+    while ((i) < matrix.shape[0]) and (matrix[i][i] != 0):
+        
+        matrix[i] = matrix[i]/matrix[i][i]
+        i += 1        
+    
+    return matrix[:,(matrix.shape[0]):]
 
 def cholesky(A, b):
     
