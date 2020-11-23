@@ -61,12 +61,17 @@ def gauss(a):
 
                 l += 1
             
-            while (a[k][i] == 0 and (k+1) < a.shape[0]):
-                k += 1
-
-            a[k] = a[k] - (a[k][i]/a[i][i])*a[i]
+            while (k < a.shape[0]):
             
-            k += 1
+                if (a[k][i] == 0):
+                    
+                    k += 1
+                    
+                else:
+
+                    mult = a[k][i]/a[i][i]
+                    a[k] = a[k] - mult*a[i]
+                    k += 1
 
         i += 1
 
@@ -103,7 +108,7 @@ def inverse(matrix):
         
         while (k < matrix.shape[0]):
             
-            if (k == i) or (matrix[i][i] == 0):
+            if (k == i) or (matrix[k][i] == 0) or (matrix[i][i] == 0):
                 
                 k += 1
                 
