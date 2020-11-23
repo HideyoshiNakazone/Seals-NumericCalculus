@@ -61,17 +61,14 @@ def gauss(a):
 
                 l += 1
             
-            while (k < a.shape[0]):
-            
-                if (a[k][i] == 0):
-                    
+            if (a[k][i] == 0):
+                while (k < a.shape[0]):
                     k += 1
-                    
-                else:
+                
+            else:
 
-                    mult = a[k][i]/a[i][i]
-                    a[k] = a[k] - mult*a[i]
-                    k += 1
+                a[k] = a[k] - (a[k][i]/a[i][i])*a[i]
+                k += 1
 
         i += 1
 
