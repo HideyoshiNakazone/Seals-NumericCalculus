@@ -44,8 +44,48 @@ def identity(matrix):
         
     return matrix
 
-def gauss(matrix):
+def gauss(a):
     
+    for i in range(a.shape[0]):
+
+        k = i + 1
+
+        while (k<a.shape[0]):
+
+            l = 1
+            while (a[i][i] == 0 and l < a.shape[0]):
+
+                temp = a[i].copy()
+                a[i] = a[i+l]
+                a[i+l] = temp
+
+                l += 1
+            
+            if (a[k][i] == 0):
+                while (k < a.shape[0]):
+                    k += 1
+                
+            else:
+
+                a[k] = a[k] - (a[k][i]/a[i][i])*a[i]
+                k += 1
+
+        i += 1
+
+    x = np.zeros(a.shape[0])
+
+    for j in reversed(range(x.shape[0])):
+        
+        suma = 0
+        for k in range (j,a.shape[0]):
+            suma += a[j][k]*x[k]
+        x[j] = (a[j][a.shape[0]] - suma)/a[j][j]
+    
+    return x
+
+def inverse(matrix):
+    
+    matrix = np.hstack(matrix,np.identity(matrix.shape[0]))
     i = 0
     k = 0
     
@@ -65,7 +105,7 @@ def gauss(matrix):
         
         while (k < matrix.shape[0]):
             
-            if (k == i) or (matrix[i][i] == 0):
+            if (k == i) or (matrix[k][i] == 0) or (matrix[i][i] == 0):
                 
                 k += 1
                 
@@ -86,10 +126,6 @@ def gauss(matrix):
         i += 1        
     
     return matrix[:,(matrix.shape[0]):]
-
-def inverse(matrix):
-    
-    return gauss(np.hstack((matrix, identity(np.zeros(matrix.shape)))))
 
 def cholesky(A, b):
     

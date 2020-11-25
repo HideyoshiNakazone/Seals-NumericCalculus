@@ -17,5 +17,8 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from .write import numpy as np
-from .write import pandas as pd
+from .write import numpy
+from .write import pandas
+
+np = numpy()
+pd = pandas()
