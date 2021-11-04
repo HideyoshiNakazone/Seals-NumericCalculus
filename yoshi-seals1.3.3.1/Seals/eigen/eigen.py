@@ -21,11 +21,11 @@ import numpy as np
 
 def eigen(a):
 
-    b = np.random.rand(a.shape[0],a.shape[1])
-    l = np.ones((a.shape[0]))
     k = 0
+    l = np.ones((a.shape[0]))
 
     at = a #variavel temporaria para A
+    b = np.random.rand(a.shape[0],a.shape[1])
 
     while (k < at.shape[0]):
 
@@ -34,21 +34,21 @@ def eigen(a):
 
         ctrl = 0
 
-        while abs(ctrl - l[k]) > 10**(-8):
+        while (ctrl != l[k]):
             
             ctrl = l[k]
             u = at.dot(u)
             l[k] = max(u.min(), u.max(), key=abs)
             u = u/l[k]
 
-        alpha = .999*l[k]
+        alpha = 0.999*l[k]
+
+        t = np.random.rand(a.shape[0],1)
 
         b[k] = b[k]/max(b[k].min(), b[k].max(), key=abs)
-        t = np.random.rand(a.shape[0],1)
-        t = t/max(t.min(), t.max(), key=abs)
+        t = l/max(l.min(), l.max(), key=abs)
 
-        while not (np.allclose(b[k],t,atol=10**(-8))):
-
+        while not (np.allclose(b[k],t,atol=10**(-17))):
             t = b[k].copy()
             b[k] = np.linalg.solve((a - alpha*np.identity(a.shape[0])),((l[k]-alpha)*t))
             b[k] = b[k]/max(b[k].min(), b[k].max(), key=abs)
