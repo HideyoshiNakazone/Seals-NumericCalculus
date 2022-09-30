@@ -1,9 +1,0 @@
-README.md
-setup.py
-Seals/Seals.py
-Seals/__init__.py
-yoshi_seals.egg-info/PKG-INFO
-yoshi_seals.egg-info/SOURCES.txt
-yoshi_seals.egg-info/dependency_links.txt
-yoshi_seals.egg-info/requires.txt
-yoshi_seals.egg-info/top_level.txt
