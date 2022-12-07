@@ -1,7 +1,7 @@
 import setuptools
 import os
 
-__name = "yoshi_seals"
+__name = "yoshi-seals"
 
 __version_sufix = os.environ.get('VERSION_SUFIX')
 if not __version_sufix:
