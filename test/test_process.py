@@ -54,13 +54,13 @@ class TestProcess(unittest.TestCase):
             ps.vstack(a, b)
 
     def test_gauss(self):
-        a = np.array(([4., 3.], [3., 2.]))
-        b = np.array(([1.], [1.]))
+        a = np.array(([4., 10., 8.], [10., 26., 26], [8., 26., 61.]))
+        b = np.array(([44.], [128.], [214.]))
 
         matrix = ps.gauss(a, b)
-        expected_matrix = np.array([[1.], [-1.]])
+        expected_matrix = np.array([[-8.], [6.], [2.]])
 
-        npt.assert_array_equal(matrix, expected_matrix)
+        npt.assert_almost_equal(matrix, expected_matrix)
 
     def test_cholesky(self):
         a = np.array(([4., 10., 8.], [10., 26., 26], [8., 26., 61.]))
@@ -72,19 +72,19 @@ class TestProcess(unittest.TestCase):
         npt.assert_almost_equal(matrix, expected_matrix)
 
     def test_decomposition(self):
-        a = np.array(([4., 3.], [3., 2.]))
-        b = np.array(([1.], [1.]))
+        a = np.array(([4., 10., 8.], [10., 26., 26], [8., 26., 61.]))
+        b = np.array(([44.], [128.], [214.]))
 
         matrix = ps.decomposition(a, b)
-        expected_matrix = np.array([[1.], [-1.]])
+        expected_matrix = np.array([[-8.], [6.], [2.]])
 
-        npt.assert_array_equal(matrix, expected_matrix)
+        npt.assert_almost_equal(matrix, expected_matrix)
 
     def test_cramer(self):
-        a = np.array(([4., 3.], [3., 2.]))
-        b = np.array(([1.], [1.]))
+        a = np.array(([4., 10., 8.], [10., 26., 26], [8., 26., 61.]))
+        b = np.array(([44.], [128.], [214.]))
 
         matrix = ps.cramer(a, b)
-        expected_matrix = np.array([[1.], [-1.]])
+        expected_matrix = np.array([[-8.], [6.], [2.]])
 
-        npt.assert_array_equal(matrix, expected_matrix)
+        npt.assert_almost_equal(matrix, expected_matrix)

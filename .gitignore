@@ -1,7 +1,9 @@
-*.pyc
+build/
 .vscode
 .idea/
 
+*.pyc
+*.so
 *.c
 
-*.so
+yoshi_seals.egg-info/
