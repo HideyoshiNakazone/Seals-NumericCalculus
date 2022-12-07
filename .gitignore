@@ -10,3 +10,7 @@ yoshi_seals.egg-info/
 
 .secret
 .env
+
+dist/
+
+wheelhouse/

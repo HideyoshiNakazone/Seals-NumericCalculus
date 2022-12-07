@@ -37,6 +37,15 @@ jobs:
     - name: Build Pip Packge
       run: |
         pipenv run VERSION_SUFIX=${GITHUB_RUN_ID} python setup.py sdist bdist_wheel
+    - name: Convert Pip Packge To ManyLinux
+      run: |
+        wget https://github.com/NixOS/patchelf/releases/download/0.17.0/patchelf-0.17.0.tar.gz
+        tar xf patchelf-0.17.0.tar.gz
+        cd patchelf-0.17.0
+        ./configure
+        sudo make install
+        cd ..
+        pipenv run python -m auditwheel repair --plat manylinux_2_17_x86_64 dist/yoshi_seals-*.whl
     - name: Upload Pip Packge
       run: |
-        pipenv run TWINE_USERNAME=${{secrets.PYPI_USER}} TWINE_PASSWORD=${{secrets.PYPI_TOKEN}} python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+        pipenv run TWINE_USERNAME=${{secrets.PYPI_USER}} TWINE_PASSWORD=${{secrets.PYPI_TOKEN}} python -m twine upload --repository-url https://upload.pypi.org/legacy/ wheelhouse/*
