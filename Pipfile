@@ -6,8 +6,10 @@ name = "pypi"
 [packages]
 numpy = "*"
 pandas = "*"
+cython = "*"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "3.10"

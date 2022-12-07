@@ -19,46 +19,43 @@
 
 import numpy as np
 
-def eigen(a: np.ndarray) -> np.ndarray:
 
-    k = 0
+def eigen(a: np.ndarray) -> np.ndarray:
     l = np.ones((a.shape[0]))
 
-    at = a #variavel temporaria para A
-    b = np.random.rand(a.shape[0],a.shape[1])
+    at = a  # variavel temporaria para A
+    b = np.random.rand(a.shape[0], a.shape[1])
 
-    while (k < at.shape[0]):
+    for k in range(at.shape[0]):
 
-        u = np.random.rand(at.shape[0],1)
-        u = u/max(u.min(), u.max(), key=abs)
+        u = np.random.rand(at.shape[0], 1)
+        u = u / max(u.min(), u.max(), key=abs)
 
         ctrl = 0
 
-        while (ctrl != l[k]):
-            
+        while ctrl != l[k]:
             ctrl = l[k]
             u = at.dot(u)
             l[k] = max(u.min(), u.max(), key=abs)
-            u = u/l[k]
+            u = u / l[k]
 
-        alpha = 0.999*l[k]
+        alpha = 0.999 * l[k]
 
-        t = np.random.rand(a.shape[0],1)
+        t = np.random.rand(a.shape[0], 1)
 
-        b[k] = b[k]/max(b[k].min(), b[k].max(), key=abs)
-        t = l/max(l.min(), l.max(), key=abs)
+        b[k] = b[k] / max(b[k].min(), b[k].max(), key=abs)
+        t = l / max(l.min(), l.max(), key=abs)
 
-        while not (np.allclose(b[k],t,atol=10**(-17))):
+        while not (np.allclose(b[k], t, atol=10 ** (-17))):
             t = b[k].copy()
-            b[k] = np.linalg.solve((a - alpha*np.identity(a.shape[0])),((l[k]-alpha)*t))
-            b[k] = b[k]/max(b[k].min(), b[k].max(), key=abs)
+            b[k] = np.linalg.solve((a - alpha * np.identity(a.shape[0])), ((l[k] - alpha) * t))
+            b[k] = b[k] / max(b[k].min(), b[k].max(), key=abs)
 
         i = 0
 
-        while (u[i] == 0):
+        while u[i] == 0:
             i += 1
 
-        at = at - (1/u[i])*u*at[i]
-        k += 1
+        at = at - (1 / u[i]) * u * at[i]
 
     return l, b

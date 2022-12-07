@@ -17,9 +17,18 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from .process import identity
-from .process import gauss
-from .process import inverse
-from .process import cholesky
-from .process import decomposition
-from .process import cramer
+import pandas as pd
+import numpy as np
+import csv
+
+
+def numpy(array: np.ndarray, path: str) -> np.ndarray:
+    with open(path, mode='w') as linear_system:
+        solution_writer = csv.writer(linear_system, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        solution_writer.writerows(array)
+
+    return array
+
+
+def pandas(df: pd.DataFrame, path: str) -> None:
+    df.to_csv(path)

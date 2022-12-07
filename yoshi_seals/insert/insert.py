@@ -19,30 +19,19 @@
 
 import numpy as np
 
-def matrix(matrix: np.ndarray) -> np.ndarray:
 
-    i = 0
-    
-    while (i < matrix.shape[0]):
-        
-        j = 0
-        
-        while (j < matrix.shape[1]):
-            
-            matrix[i][j] = float(input('Insira o elemento {}x{}: '.format((i+1),(j+1))))
-            j += 1
-        
-        i += 1
-        
-    return matrix
+def matrix(a: np.ndarray) -> np.ndarray:
 
-def vector(vector: np.ndarray) -> np.ndarray:
-    
-    j=0
-    
-    while (j < vector.shape[0]):
-            
-        vector[j] = float(input('Insira o elemento b{}: '.format((j+1))))
-        j += 1
-        
-    return vector
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            a[i][j] = float(input(f"Insert the element a{i+1}x{j+1}: "))
+
+    return a
+
+
+def vector(v: np.ndarray) -> np.ndarray:
+
+    for j in range(v.shape[0]):
+        v[j] = float(input(f"Insert the element b{j+1}: "))
+
+    return v
