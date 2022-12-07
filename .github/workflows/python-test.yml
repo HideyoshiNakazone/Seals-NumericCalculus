@@ -27,6 +27,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip pipenv
         if [ -f Pipfile ]; then pipenv install; fi
+    - name: Build Cython Code
+      run: |
+        pipenv run make
     - name: Test with unittest
       run: |
         pipenv run python -m unittest
