@@ -52,6 +52,8 @@ cpdef np.ndarray[np.float64_t, ndim=2] gauss(double[::,::] A, double[::,::] b):
 
     if not c_pointer:
         raise MemoryError()
+    if A.shape[0] < A.shape[1]:
+        raise ValueError("Invalid Matrix, this linear system is not solvable.")
 
     for i in range(A.shape[0]):
 
@@ -78,7 +80,7 @@ cpdef np.ndarray[np.float64_t, ndim=2] gauss(double[::,::] A, double[::,::] b):
             sum_var += a[reversed_index][k]*x[k]
         x[reversed_index] = (a[reversed_index][A.shape[1]] - sum_var)/a[reversed_index][reversed_index]
 
-    return np.asarray(x).reshape(b.shape[0],b.shape[1])
+    return np.asarray(x).reshape(A.shape[1],b.shape[1])
 
 cpdef np.ndarray[np.float64_t, ndim=2] cholesky(double[:,:] A, double[:,:] b):
 
