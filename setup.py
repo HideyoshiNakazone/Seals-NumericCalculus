@@ -1,9 +1,9 @@
-from setuptools import Extension, setup
-from Cython.Build import cythonize
-import setuptools
-import numpy
 import os
 
+import numpy
+import setuptools
+from Cython.Build import cythonize
+from setuptools import Extension
 
 __name = "yoshi-seals"
 
@@ -55,7 +55,7 @@ setuptools.setup(
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent"
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     install_requires=[
         'numpy',
         'pandas',
