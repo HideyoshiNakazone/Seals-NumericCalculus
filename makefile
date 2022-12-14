@@ -15,6 +15,6 @@ all: $(OBJS)
 
 clean:
 
-	rm $(WORK)/**/*.cpython-310-x86_64-linux-gnu.so
+	rm $(WORK)/**/*.so
 	rm $(WORK)/**/*.c
 
