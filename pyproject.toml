@@ -28,7 +28,8 @@ setuptools = "^70.1.0"
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-format = "v2.2+{distance}.{commit}"
+bump = "auto"
+format = "v{base}"
 
 
 [build-system]
