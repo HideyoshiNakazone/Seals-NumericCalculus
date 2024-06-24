@@ -31,8 +31,8 @@ jobs:
         if [ -f pyproject.toml ]; then poetry install; fi
     - name: Configure PyPI
       run: |
-        poetry config repositories.test-pypi https://test.pypi.org/legacy/
-        poetry config pypi-token.test-pypi ${{secrets.PYPI_TOKEN}}
+        poetry config repositories.pypi https://upload.pypi.org/legacy/
+        poetry config pypi-token.pypi ${{secrets.PYPI_TOKEN}}
     - name: Build Python Package
       run: |
         poetry build -f sdist
@@ -43,6 +43,4 @@ jobs:
         poetry run python -m unittest
     - name: Upload Python Package
       run: |
-        poetry config repositories.test-pypi https://test.pypi.org/legacy/
-        poetry config pypi-token.test-pypi ${{secrets.PYPI_TOKEN}}
-        poetry publish --repository test-pypi
+        poetry publish --repository pypi
