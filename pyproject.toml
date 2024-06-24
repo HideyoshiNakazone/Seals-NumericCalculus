@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "yoshi-seals"
+version = "2.0.3692068302"
+description = ""
+authors = ["Vitor Hideyoshi Nakazone Batista <vitor.h.n.batista@gmail.com>"]
+license = "GPL-2.0-only"
+packages = [
+    { include = "yoshi_seals", from = "." },
+]
+readme = "README.md"
+
+[tool.poetry.build]
+generate-setup-file = true
+script = "build.py"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^2.0.0"
+pandas = "^2.2.2"
+cython = "^3.0.10"
+
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^70.1.0"
+
+
+[build-system]
+requires = ["poetry-core", "setuptools>=70.1.0", "cython>=3.0.10", "numpy>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
