@@ -25,15 +25,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip poetry
+        poetry self add "poetry-dynamic-versioning[plugin]"
         if [ -f pyproject.toml ]; then poetry install; fi
-    - name: Build Cython Code
+    - name: Build Python Package
       run: |
         poetry build -f sdist
-#    - name: Test with unittest
-#      run: |
-#        poetry run python -m unittest
-    - name: Build and Upload Python Package
+        poetry install
+        echo "Builded yoshi-seals - $(poetry version)"
+    - name: Run unittest
       run: |
-        poetry config repositories.pypi https://pypi.org/legacy/
-        poetry config pypi-token.pypi ${{secrets.PYPI_TOKEN}}
-        poetry publish --repository pypi
+        poetry run python -m unittest
+    - name: Upload Python Package
+      run: |
+        poetry config repositories.test-pypi https://test.pypi.org/legacy/
+        poetry config pypi-token.test-pypi ${{secrets.PYPI_TOKEN}}
+        poetry publish --repository test-pypi
