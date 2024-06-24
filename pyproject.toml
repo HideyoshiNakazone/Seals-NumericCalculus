@@ -28,10 +28,9 @@ setuptools = "^70.1.0"
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-base = "2.1"
-format = "v{base}+{distance}.{commit}"
+format = "v2.2+{distance}.{commit}"
 
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0", "setuptools>=70.1.0", "cython>=3.0.10", "numpy>=2.0.0"]
 build-backend = "poetry_dynamic_versioning.backend"
