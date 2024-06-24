@@ -29,9 +29,10 @@ jobs:
     - name: Build Cython Code
       run: |
         poetry build -f sdist
-#    - name: Test with unittest
-#      run: |
-#        poetry run python -m unittest
+        poetry install
+    - name: Test with unittest
+      run: |
+        poetry run python -m unittest
     - name: Build and Upload Python Package
       run: |
         poetry config repositories.test-pypi https://test.pypi.org/legacy/
