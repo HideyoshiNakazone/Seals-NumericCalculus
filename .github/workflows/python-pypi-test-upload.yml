@@ -18,32 +18,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.8
+    - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
-        python-version: "3.8"
+        python-version: "3.10"
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip pipenv
-        if [ -f Pipfile ]; then pipenv install; fi
-    - name: Build Cython Code
+        python -m pip install --upgrade pip poetry
+        poetry self add "poetry-dynamic-versioning[plugin]"
+        if [ -f pyproject.toml ]; then poetry install; fi
+    - name: Build Python Package
       run: |
-        pipenv run make
-    - name: Test with unittest
+        poetry build -f sdist
+        poetry install
+        echo "Builded yoshi-seals - $(poetry version)"
+    - name: Run unittest
       run: |
-        pipenv run python -m unittest
-    - name: Build Pip Packge
+        poetry run python -m unittest
+    - name: Upload Python Package
       run: |
-        pipenv run VERSION_SUFIX=${GITHUB_RUN_ID} python setup.py sdist bdist_wheel
-    - name: Convert Pip Packge To ManyLinux
-      run: |
-        wget https://github.com/NixOS/patchelf/releases/download/0.17.0/patchelf-0.17.0.tar.gz
-        tar xf patchelf-0.17.0.tar.gz
-        cd patchelf-0.17.0
-        ./configure
-        sudo make install
-        cd ..
-        pipenv run python -m auditwheel repair --plat manylinux_2_17_x86_64 dist/yoshi_seals-*.whl
-    - name: Upload Pip Packge
-      run: |
-        pipenv run TWINE_USERNAME=${{secrets.PYPI_USER}} TWINE_PASSWORD=${{secrets.PYPI_TEST_TOKEN}} python -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*
+        poetry config repositories.test-pypi https://test.pypi.org/legacy/
+        poetry config pypi-token.test-pypi ${{secrets.PYPI_TEST_TOKEN}}
+        poetry publish --repository test-pypi
