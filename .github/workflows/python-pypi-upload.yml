@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -27,6 +29,10 @@ jobs:
         python -m pip install --upgrade pip poetry
         poetry self add "poetry-dynamic-versioning[plugin]"
         if [ -f pyproject.toml ]; then poetry install; fi
+    - name: Configure PyPI
+      run: |
+        poetry config repositories.test-pypi https://test.pypi.org/legacy/
+        poetry config pypi-token.test-pypi ${{secrets.PYPI_TOKEN}}
     - name: Build Python Package
       run: |
         poetry build -f sdist
