@@ -36,5 +36,5 @@ jobs:
     - name: Build and Upload Python Package
       run: |
         poetry config repositories.test-pypi https://test.pypi.org/legacy/
-        poetry config pypi-token.test-pypi ${{secrets.PYPI_TOKEN}}
+        poetry config pypi-token.test-pypi ${{secrets.PYPI_TEST_TOKEN}}
         poetry publish --repository test-pypi
